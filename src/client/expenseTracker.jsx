@@ -132,6 +132,20 @@ function ExpenseTracker() {
         </button>
       </form>
 
+      {/* フィルター */}
+      <div>
+        <label>カテゴリごとに表示: </label>
+
+        <select onChange={(e) => setFilter(e.target.value)}>
+          <option value="All">全て</option>
+          <option value="Food">食費</option>
+          <option value="Transport">交通費</option>
+          <option value="Shopping">ショッピング</option>
+          <option value="Daily">日常商品</option>
+          <option value="Cosmetics">化粧費</option>
+        </select>
+      </div>
+
       {/* テーブル */}
       <table border="1" cellPadding="10" style={{ marginTop: "20px" }}>
         <thead>
@@ -148,7 +162,7 @@ function ExpenseTracker() {
           {filteredExpenses.map((item) => (
             <tr key={item.id}>
               <td>{item.name}</td>
-              <td>${item.amount}</td>
+              <td>¥{item.amount}</td>
               <td>{item.category}</td>
               <td>{item.date}</td>
 
@@ -162,23 +176,9 @@ function ExpenseTracker() {
           ))}
         </tbody>
       </table>
-
+      
       {/* 合計 */}
-      <h3>合計: ${total}</h3>
-
-      {/* フィルター */}
-      <div>
-        <label>カテゴリごとに表示: </label>
-
-        <select onChange={(e) => setFilter(e.target.value)}>
-          <option value="All">全て</option>
-          <option value="Food">食費</option>
-          <option value="Transport">交通費</option>
-          <option value="Shopping">ショッピング</option>
-          <option value="Daily">日常商品</option>
-          <option value="Cosmetics">化粧費</option>
-        </select>
-      </div>
+      <h3>合計: ¥{total}</h3>
     </div>
   );
 }
