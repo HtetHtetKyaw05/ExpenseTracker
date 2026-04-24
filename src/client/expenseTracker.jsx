@@ -94,7 +94,7 @@ function ExpenseTracker() {
       <form onSubmit={handleSubmit}>
         <input
           name="name"
-          placeholder="Expense Name"
+          placeholder="費用名"
           value={form.name}
           onChange={handleChange}
         />
@@ -102,7 +102,7 @@ function ExpenseTracker() {
         <input
           name="amount"
           type="number"
-          placeholder="Amount"
+          placeholder="金額"
           value={form.amount}
           onChange={handleChange}
         />
@@ -112,10 +112,12 @@ function ExpenseTracker() {
           value={form.category}
           onChange={handleChange}
         >
-          <option value="">Select Category</option>
-          <option value="Food">Food</option>
-          <option value="Transport">Transport</option>
-          <option value="Shopping">Shopping</option>
+          <option value="">選択してください</option>
+          <option value="Food">食費</option>
+          <option value="Transport">交通費</option>
+          <option value="Shopping">ショッピング</option>
+          <option value="Daily">日常商品</option>
+          <option value="Cosmetics">化粧費</option>
         </select>
 
         <input
@@ -126,7 +128,7 @@ function ExpenseTracker() {
         />
 
         <button type="submit">
-          {editId ? "Update" : "Add Expense"}
+          {editId ? "修正する" : "追加"}
         </button>
       </form>
 
@@ -134,11 +136,11 @@ function ExpenseTracker() {
       <table border="1" cellPadding="10" style={{ marginTop: "20px" }}>
         <thead>
           <tr>
-            <th>Expense Name</th>
-            <th>Amount</th>
-            <th>Category</th>
-            <th>Date</th>
-            <th>Action</th>
+            <th>費用名</th>
+            <th>金額</th>
+            <th>カテゴリ</th>
+            <th>日付</th>
+            <th>作用</th>
           </tr>
         </thead>
 
@@ -151,9 +153,9 @@ function ExpenseTracker() {
               <td>{item.date}</td>
 
               <td>
-                <button onClick={() => handleEdit(item)}>Edit</button>
+                <button onClick={() => handleEdit(item)}>修正</button>
                 <button onClick={() => handleDelete(item.id)}>
-                  Delete
+                  削除
                 </button>
               </td>
             </tr>
@@ -162,17 +164,19 @@ function ExpenseTracker() {
       </table>
 
       {/* 合計 */}
-      <h3>Total: ${total}</h3>
+      <h3>合計: ${total}</h3>
 
       {/* フィルター */}
       <div>
-        <label>Filter by Category: </label>
+        <label>カテゴリごとに表示: </label>
 
         <select onChange={(e) => setFilter(e.target.value)}>
-          <option value="All">All</option>
-          <option value="Food">Food</option>
-          <option value="Transport">Transport</option>
-          <option value="Shopping">Shopping</option>
+          <option value="All">全て</option>
+          <option value="Food">食費</option>
+          <option value="Transport">交通費</option>
+          <option value="Shopping">ショッピング</option>
+          <option value="Daily">日常商品</option>
+          <option value="Cosmetics">化粧費</option>
         </select>
       </div>
     </div>
